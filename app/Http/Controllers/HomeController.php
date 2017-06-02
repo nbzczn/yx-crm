@@ -31,7 +31,13 @@ class HomeController extends Controller
         $success = Company::where('user_id', $user_id)->where('status', 'S')->count('id');
         $complete = Company::where('user_id', $user_id)->where('status', 'C')->count('id');
 
-        $cgl = round($success / ($fail + $success) * 100, 2);
+        if ($fail + $success) {
+
+            $cgl = round($success / ($fail + $success) * 100, 2);
+        }else {
+            $cgl = 0;
+        }
+
         return view('home',[
             'daiban' => $daiban,
             'cgl' => $cgl,
