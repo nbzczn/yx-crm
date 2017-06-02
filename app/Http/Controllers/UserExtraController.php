@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\User\passwordRequest;
 use App\Models\Company;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserExtraController extends UserController
 {
@@ -82,4 +84,48 @@ class UserExtraController extends UserController
         return redirect('/my_success')->with('success', '已标记[ '. $model->name .' ]为完成状态');
 
     }
+
+
+    public function setPassword(Request $request)
+    {
+        if ($request->isMethod('post')) {
+
+            $password = $request->password;
+            $newpassword = $request->newpassword;
+            $newpassword_confirmed = $request->newpassword_confirmed;
+
+            if(!$password) {
+                return redirect('set_password')->withErrors('原密码必须填写')->withInput();
+            }
+            if (!$newpassword) {
+                return redirect('set_password')->withErrors('新密码必须填写')->withInput();
+            }
+            if (!$newpassword_confirmed) {
+                return redirect('set_password')->withErrors('重复新密码必须填写')->withInput();
+            }
+            if ($newpassword_confirmed !== $newpassword) {
+                return redirect('set_password')->withErrors('新密码与重复新密码不一致')->withInput();
+            }
+
+
+            $user = $request->user();
+
+            if (Hash::check($password, $user->password)){
+                $user->password = bcrypt($request->newpassword);
+                $user->save();
+
+                return redirect('/set_password')->with('success', '密码修改成功');
+            }else{
+                return redirect('/set_password')->withErrors('原密码错误');
+            }
+
+
+
+
+        }else{
+
+            return view('user.password');
+        }
+    }
+
 }

@@ -20,12 +20,15 @@ Route::any('/patch', 'PatchController')->name('patch');
 
 Route::resource('/users', 'UserController');
 
+
 Route::post('/users/{id}/reset', 'UserExtraController@reset')->name('users.reset');
 Route::get('/my', 'UserExtraController@my')->name('users.my');
 Route::get('/my_success', 'UserExtraController@my_success')->name('users.my_success');
 Route::post('/users/set_fail', 'UserExtraController@setFail')->name('users.set_fail');
 Route::post('/users/set_success', 'UserExtraController@setSuccess')->name('users.set_success');
 Route::post('/users/set_complete', 'UserExtraController@setComplete')->name('users.set_complete');
+
+Route::any('/set_password', 'UserExtraController@setPassword')->name('users.set_password');
 
 
 // ajax

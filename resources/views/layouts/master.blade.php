@@ -124,6 +124,14 @@
                     </a>
                 </li>
 
+
+                <li class="nav-item {{active_class(if_uri('set_password'))}}">
+                    <a href="{{ url('/set_password') }}" class="nav-link">
+                        <i class="icon-home"></i>
+                        <span class="title">修改密码</span>
+                    </a>
+                </li>
+
                 <li class="nav-item {{active_class(if_uri('my'))}}">
                     <a href="{{ url('/my') }}" class="nav-link">
                         <i class="icon-home"></i>
