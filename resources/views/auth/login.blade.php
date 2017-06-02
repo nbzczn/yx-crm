@@ -76,11 +76,11 @@
             </label>
             <button type="submit" class="btn green pull-right"> 登录 </button>
         </div>
-        <div class="forget-password">
-            <h4>忘记密码 ?</h4>
-            <p> 点击
-                <a href="javascript:;" id="forget-password"> 这里 </a> 来重置密码 </p>
-        </div>
+        {{--<div class="forget-password">--}}
+            {{--<h4>忘记密码 ?</h4>--}}
+            {{--<p> 点击--}}
+                {{--<a href="javascript:;" id="forget-password"> 这里 </a> 来重置密码 </p>--}}
+        {{--</div>--}}
     </form>
     <!-- END LOGIN FORM -->
 
