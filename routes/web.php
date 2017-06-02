@@ -24,4 +24,14 @@ Route::any('/patch', 'PatchController')->name('patch');
 Route::resource('/users', 'UserController');
 
 Route::post('/users/{id}/reset', 'UserExtraController@reset')->name('users.reset');
+Route::get('/my', 'UserExtraController@my')->name('users.my');
+
+
+// ajax
+Route::group(['prefix'=>'ajax'], function() {
+
+    Route::get('people_handle', 'AjaxController@peopleHandle');
+    Route::get('personnel_as_user_handle', 'AjaxController@personnelAsUserHandle');
+
+});
 

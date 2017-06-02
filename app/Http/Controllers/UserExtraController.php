@@ -18,4 +18,9 @@ class UserExtraController extends UserController
 
         return redirect()->route('users.index')->with('success','密码重置成功, 已重置[ '.$user->name.' ]的密码为 123456');
     }
+
+    public function my()
+    {
+        return view('user_extra.my');
+    }
 }

@@ -75,16 +75,6 @@
                     </a>
                     <ul class="dropdown-menu dropdown-menu-default">
                         <li>
-                            <a href="page_user_profile_1.html">
-                                <i class="icon-user"></i> 我的信息 </a>
-                        </li>
-                        <li class="divider"> </li>
-                        <li>
-                            <a href="page_user_lock_1.html">
-                                <i class="icon-lock"></i> 锁定页面 </a>
-                        </li>
-                        <li class="divider"> </li>
-                        <li>
                             <a href="{{ url('/logout') }}" data-method="POST" data-confirm="确认退出？">
                                 <i class="icon-logout"></i> 退出登录 </a>
                         </li>
@@ -160,31 +150,6 @@
                         <span class="title">数据分配</span>
                     </a>
                 </li>
-                <li class="nav-item {{active_class(if_uri('company'))}}">
-                    <a href="{{ url('/company') }}" class="nav-link">
-                        <i class="icon-home"></i>
-                        <span class="title">数据查询</span>
-                    </a>
-                </li>
-                {{--<li class="nav-item {{active_class(if_uri_pattern(['organizations*', 'jobs*']))}}">--}}
-                    {{--<a href="javascript:;" class="nav-link nav-toggle">--}}
-                        {{--<i class="icon-vector"></i>--}}
-                        {{--<span class="title">组织管理</span>--}}
-                        {{--<span class="arrow"></span>--}}
-                    {{--</a>--}}
-                    {{--<ul class="sub-menu">--}}
-                        {{--<li class="nav-item  {{active_class(if_uri_pattern(['organizations*']))}}">--}}
-                            {{--<a href="{{ url('/organizations') }}" class="nav-link ">--}}
-                                {{--<span class="title">组织架构</span>--}}
-                            {{--</a>--}}
-                        {{--</li>--}}
-                        {{--<li class="nav-item {{active_class(if_uri_pattern(['jobs*']))}}">--}}
-                            {{--<a href="{{ route('jobs.index') }}" class="nav-link ">--}}
-                                {{--<span class="title">职位设置</span>--}}
-                            {{--</a>--}}
-                        {{--</li>--}}
-                    {{--</ul>--}}
-                {{--</li>--}}
 
             </ul>
             <!-- 结束侧边栏菜单 -->
