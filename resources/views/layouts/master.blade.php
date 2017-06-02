@@ -127,10 +127,16 @@
                 <li class="nav-item {{active_class(if_uri('my'))}}">
                     <a href="{{ url('/my') }}" class="nav-link">
                         <i class="icon-home"></i>
-                        <span class="title">我的数据</span>
+                        <span class="title">待办数据</span>
                     </a>
                 </li>
-
+                <li class="nav-item {{active_class(if_uri('my_success'))}}">
+                    <a href="{{ url('/my_success') }}" class="nav-link">
+                        <i class="icon-home"></i>
+                        <span class="title">成功数据</span>
+                    </a>
+                </li>
+                @if(Auth::user()->id == 1)
                 <li class="nav-item {{active_class(if_uri_pattern('users*'))}}">
                     <a href="{{ url('/users') }}" class="nav-link">
                         <i class="icon-home"></i>
@@ -150,6 +156,7 @@
                         <span class="title">数据分配</span>
                     </a>
                 </li>
+                @endif
 
             </ul>
             <!-- 结束侧边栏菜单 -->

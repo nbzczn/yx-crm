@@ -11,9 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Auth::routes();
 
@@ -25,12 +22,18 @@ Route::resource('/users', 'UserController');
 
 Route::post('/users/{id}/reset', 'UserExtraController@reset')->name('users.reset');
 Route::get('/my', 'UserExtraController@my')->name('users.my');
+Route::get('/my_success', 'UserExtraController@my_success')->name('users.my_success');
+Route::post('/users/set_fail', 'UserExtraController@setFail')->name('users.set_fail');
+Route::post('/users/set_success', 'UserExtraController@setSuccess')->name('users.set_success');
+Route::post('/users/set_complete', 'UserExtraController@setComplete')->name('users.set_complete');
 
 
 // ajax
 Route::group(['prefix'=>'ajax'], function() {
 
     Route::get('people_handle', 'AjaxController@peopleHandle');
+    Route::any('companies_handle', 'AjaxController@companiesHandle');
+    Route::any('companies_success_handle', 'AjaxController@companiesSuccessHandle');
     Route::get('personnel_as_user_handle', 'AjaxController@personnelAsUserHandle');
 
 });
