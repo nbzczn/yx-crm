@@ -31,6 +31,7 @@ Route::post('/users/set_wait', 'UserExtraController@setWait')->name('users.set_w
 Route::post('/users/set_complete', 'UserExtraController@setComplete')->name('users.set_complete');
 
 Route::any('/set_password', 'UserExtraController@setPassword')->name('users.set_password');
+Route::any('/clear_all', 'ClearAllController')->name('clear_all');
 
 
 // ajax

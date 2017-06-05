@@ -74,6 +74,12 @@
                         <i class="fa fa-angle-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-default">
+                        @if(Auth::user()->id == 1)
+                        <li>
+                            <a href="{{ url('/clear_all') }}" style="color:red;" data-method="POST" data-confirm="确认清除所有数据？清除后无法恢复！！！">
+                                <i class="icon-share-alt" style="color:red;"></i> 一键清除所有数据 </a>
+                        </li>
+                        @endif
                         <li>
                             <a href="{{ url('/logout') }}" data-method="POST" data-confirm="确认退出？">
                                 <i class="icon-logout"></i> 退出登录 </a>

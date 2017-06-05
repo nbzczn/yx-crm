@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="row">
+        @include('layouts.message')
         <div class="col-md-4">
             <a class="dashboard-stat dashboard-stat-v2 blue" href="#">
                 <div class="visual">
