@@ -24,7 +24,7 @@
                             <th class="min-contact">联系电话</th>
                             <th class="none">企业地址</th>
                             <th class="none">企业描述</th>
-                            <th class="actions">操作</th>
+                            {{--<th class="actions">操作</th>--}}
                         </tr>
                         </thead>
                         <tbody>
@@ -76,15 +76,15 @@
                     {data: 'contact'},
                     {data: 'address'},
                     {data: 'description'},
-                    {
-                        "data":"",
-                        "className":"text-center",
-                        "render": function ( data, type, row ) {
-                            var msg = '';
-                            msg += '<a href="{{ url('/users/set_complete') }}?id='+row.id+'" class="btn btn-xs blue"  data-method="POST" data-confirm="确认标记为失败, 标记后后无法撤销!" > <i class="fa fa-flag"></i> 标记完成</a>';
-                            return msg;
-                        }
-                    }
+                    {{--{--}}
+                        {{--"data":"",--}}
+                        {{--"className":"text-center",--}}
+                        {{--"render": function ( data, type, row ) {--}}
+                            {{--var msg = '';--}}
+                            {{--msg += '<a href="{{ url('/users/set_complete') }}?id='+row.id+'" class="btn btn-xs blue"  data-method="POST" data-confirm="确认标记为失败, 标记后后无法撤销!" > <i class="fa fa-flag"></i> 标记完成</a>';--}}
+                            {{--return msg;--}}
+                        {{--}--}}
+                    {{--}--}}
                 ],
                 buttons: [
 //                    { extend: 'print', className: 'btn dark btn-outline' },

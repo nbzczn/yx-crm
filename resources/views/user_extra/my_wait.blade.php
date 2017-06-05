@@ -81,7 +81,8 @@
                         "className":"text-center",
                         "render": function ( data, type, row ) {
                             var msg = '';
-                            msg += '<a href="{{ url('/users/set_complete') }}?id='+row.id+'" class="btn btn-xs blue"  data-method="POST" data-confirm="确认标记为完成, 标记后后无法撤销!" > <i class="fa fa-flag"></i> 标记完成</a>';
+                            msg += '<a href="{{ url('/users/set_fail') }}?id='+row.id+'" class="btn btn-xs yellow"  data-method="POST" data-confirm="确认标记为失败, 标记后后无法撤销!" > <i class="fa fa-flag"></i> 标记失败</a>';
+                            msg += '<a href="{{ url('/users/set_success') }}?id='+row.id+'" class="btn btn-xs green"  data-method="POST" data-confirm="确认标记为已联系, 标记后后无法撤销!" > <i class="fa fa-flag"></i> 标记成功</a>';
                             return msg;
                         }
                     }
