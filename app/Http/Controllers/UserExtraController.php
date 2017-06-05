@@ -57,14 +57,14 @@ class UserExtraController extends UserController
 
         $model->save();
 
-        return redirect('/my')->with('success', '已标记[ '. $model->name .' ]为失败状态');
+        return redirect()->back()->with('success', '已标记[ '. $model->name .' ]为失败状态');
 
     }
     public function setSuccess(Request $request)
     {
         $id = $request->id;
         if (!$id){
-            return redirect('/my')->withErrors('参数错误');
+            return redirect()->back()->withErrors('参数错误');
         }
         $model = Company::find($id);
 
