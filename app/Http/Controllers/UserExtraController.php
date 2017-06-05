@@ -48,7 +48,7 @@ class UserExtraController extends UserController
     {
         $id = $request->id;
         if (!$id){
-            return redirect('/my')->withErrors('参数错误');
+            return redirect()->back()->withErrors('参数错误');
         }
         $model = Company::find($id);
 
@@ -73,7 +73,7 @@ class UserExtraController extends UserController
 
         $model->save();
 
-        return redirect('/my')->with('success', '已标记[ '. $model->name .' ]为成功状态');
+        return redirect()->back()->with('success', '已标记[ '. $model->name .' ]为成功状态');
 
     }
     public function setWait(Request $request)
