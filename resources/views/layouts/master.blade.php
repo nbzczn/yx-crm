@@ -141,7 +141,13 @@
                 <li class="nav-item {{active_class(if_uri('my_success'))}}">
                     <a href="{{ url('/my_success') }}" class="nav-link">
                         <i class="icon-home"></i>
-                        <span class="title">成功数据</span>
+                        <span class="title">已联系数据</span>
+                    </a>
+                </li>
+                <li class="nav-item {{active_class(if_uri('my_success'))}}">
+                    <a href="{{ url('/my_wait') }}" class="nav-link">
+                        <i class="icon-home"></i>
+                        <span class="title">稍后联系数据</span>
                     </a>
                 </li>
                 @if(Auth::user()->id == 1)
