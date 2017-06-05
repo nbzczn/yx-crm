@@ -36,6 +36,13 @@ class UserExtraController extends UserController
             'user_id' => $user_id
         ]);
     }
+    public function my_wait(Request $request)
+    {
+        $user_id = $request->user()->id;
+        return view('user_extra.my_wait', [
+            'user_id' => $user_id
+        ]);
+    }
 
     public function setFail(Request $request)
     {
@@ -67,6 +74,22 @@ class UserExtraController extends UserController
         $model->save();
 
         return redirect('/my')->with('success', '已标记[ '. $model->name .' ]为成功状态');
+
+    }
+    public function setWait(Request $request)
+    {
+        $id = $request->id;
+        if (!$id){
+            return redirect('/my')->withErrors('参数错误');
+        }
+        $model = Company::find($id);
+
+        $model->is_contact = 'Y';
+        $model->status = 'W';
+
+        $model->save();
+
+        return redirect('/my')->with('success', '已标记[ '. $model->name .' ]为稍后联系状态');
 
     }
     public function setComplete(Request $request)
