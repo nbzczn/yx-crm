@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Company;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class AjaxController extends Controller
@@ -132,6 +133,66 @@ class AjaxController extends Controller
                 'id'    => $value->id,
                 'name' => $value->name,
                 'contact' => $value->contact,
+                'address' => $value->address,
+                'description' => $value->description,
+            ];
+        }
+        $records["draw"] = $sEcho;
+        $records["recordsTotal"] = $iTotalRecords;
+        $records["recordsFiltered"] = $iTotalRecords;
+
+        return response()->json($records);
+    }
+    public function companiesPayedHandle(Request $request)
+    {
+        $user_id = $request->user_id;
+        $iDisplayLength = $request->input('length', 10);
+        $iDisplayStart = $request->input('start', 0);
+        $sEcho = $request->input('draw', 10);
+
+        $records = [];
+        $records["data"] = [];
+
+        $iTotalRecords = Company::where('user_id', $user_id)->where('status', 'P')->count();
+
+        $lists = Company::where('user_id', $user_id)->where('status', 'P')->orderBy('id', 'asc')->offset($iDisplayStart)->limit($iDisplayLength)->get();
+
+        foreach ($lists as $key => $value) {
+            $records["data"][] = [
+                'id'    => $value->id,
+                'name' => $value->name,
+                'contact' => $value->contact,
+                'address' => $value->address,
+                'description' => $value->description,
+            ];
+        }
+        $records["draw"] = $sEcho;
+        $records["recordsTotal"] = $iTotalRecords;
+        $records["recordsFiltered"] = $iTotalRecords;
+
+        return response()->json($records);
+    }
+    public function companiesAllPayedHandle(Request $request)
+    {
+        $iDisplayLength = $request->input('length', 10);
+        $iDisplayStart = $request->input('start', 0);
+        $sEcho = $request->input('draw', 10);
+
+        $records = [];
+        $records["data"] = [];
+
+        $iTotalRecords = Company::where('status', 'P')->count();
+
+        $lists = Company::where('status', 'P')->orderBy('id', 'asc')->offset($iDisplayStart)->limit($iDisplayLength)->get();
+
+        foreach ($lists as $key => $value) {
+            $t_carbon=new Carbon($value->created_at);
+            $records["data"][] = [
+                'id'    => $value->id,
+                'name' => $value->name,
+                'contact' => $value->contact,
+                'user' => $value->user->name,
+                'payed_at' => $t_carbon->toDateString(),
                 'address' => $value->address,
                 'description' => $value->description,
             ];

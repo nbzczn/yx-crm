@@ -138,6 +138,7 @@
                     </a>
                 </li>
 
+                @if(Auth::user()->id != 1 && Auth::user()->id != 2)
                 <li class="nav-item {{active_class(if_uri('my'))}}">
                     <a href="{{ url('/my') }}" class="nav-link">
                         <i class="icon-home"></i>
@@ -156,6 +157,13 @@
                         <span class="title">稍后联系数据</span>
                     </a>
                 </li>
+                <li class="nav-item {{active_class(if_uri('payed'))}}">
+                    <a href="{{ url('/payed') }}" class="nav-link">
+                        <i class="icon-home"></i>
+                        <span class="title">已付款数据</span>
+                    </a>
+                </li>
+                @endif
                 @if(Auth::user()->id == 1)
                 <li class="nav-item {{active_class(if_uri_pattern('users*'))}}">
                     <a href="{{ url('/users') }}" class="nav-link">
@@ -176,6 +184,14 @@
                         <span class="title">数据分配</span>
                     </a>
                 </li>
+                @endif
+                @if(Auth::user()->id == 1 || Auth::user()->id == 2)
+                    <li class="nav-item {{active_class(if_uri('all_payed'))}}">
+                        <a href="{{ url('/all_payed') }}" class="nav-link">
+                            <i class="icon-home"></i>
+                            <span class="title">所有已付款数据</span>
+                        </a>
+                    </li>
                 @endif
 
             </ul>

@@ -27,21 +27,18 @@ class HomeController extends Controller
         $user_id = $request->user()->id;
 
         $daiban = Company::where('user_id', $user_id)->where('is_contact', 'N')->count('id');
-        $fail = Company::where('user_id', $user_id)->where('status', 'F')->count('id');
-        $success = Company::where('user_id', $user_id)->where('status', 'S')->count('id');
-        $complete = Company::where('user_id', $user_id)->where('status', 'C')->count('id');
+//        $fail = Company::where('user_id', $user_id)->where('status', 'F')->count('id');
+        $chenggong = Company::where('user_id', $user_id)->where('status', 'S')->count('id');
+        $yifukuan = Company::where('user_id', $user_id)->where('status', 'P')->count('id');
 
-        if ($fail + $success) {
-
-            $cgl = round($success / ($fail + $success) * 100, 2);
-        }else {
-            $cgl = 0;
-        }
+        $all_payed = Company::where('status', 'P')->count('id');
 
         return view('home',[
             'daiban' => $daiban,
-            'cgl' => $cgl,
-            'complete' => $complete
+            'chenggong' => $chenggong,
+            'yifukuan' => $yifukuan,
+            'all_payed' => $all_payed,
+
         ]);
     }
 }

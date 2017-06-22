@@ -44,6 +44,14 @@ class UserExtraController extends UserController
         ]);
     }
 
+    public function payed(Request $request)
+    {
+        $user_id = $request->user()->id;
+        return view('user_extra.payed', [
+            'user_id' => $user_id
+        ]);
+    }
+
     public function setFail(Request $request)
     {
         $id = $request->id;
@@ -105,6 +113,22 @@ class UserExtraController extends UserController
         $model->save();
 
         return redirect('/my_success')->with('success', '已标记[ '. $model->name .' ]为完成状态');
+
+    }
+    public function setPayed(Request $request)
+    {
+        $id = $request->id;
+        if (!$id){
+            return redirect('/my_success')->withErrors('参数错误');
+        }
+        $model = Company::find($id);
+
+        $model->status = 'P';
+        $model->payed_at = date('Y-m-d H:i:s', time());
+
+        $model->save();
+
+        return redirect('/my_success')->with('success', '已标记[ '. $model->name .' ]为已付款状态');
 
     }
 

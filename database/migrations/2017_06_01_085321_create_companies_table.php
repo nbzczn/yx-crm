@@ -20,8 +20,10 @@ class CreateCompaniesTable extends Migration
             $table->string('contact');
             $table->text('description');
             $table->char('is_contact', 1)->nullable();
+            // W-等待联系 S-成功数据 P-已付款
             $table->char('status', 1)->nullable();
             $table->integer('user_id')->nullable();
+            $table->timestamp('payed_at')->nullable();
             $table->timestamps();
         });
     }

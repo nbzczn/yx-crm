@@ -11,7 +11,7 @@
             <div class="portlet light bordered ">
                 <div class="portlet-title">
                     <div class="caption">
-                        <span class="caption-subject">我的数据</span>
+                        <span class="caption-subject">所有已付款数据</span>
                     </div>
                 </div>
                 <div class="portlet-body ">
@@ -22,9 +22,10 @@
                             <th class="id">编号</th>
                             <th class="min-name">企业名称</th>
                             <th class="min-contact">联系电话</th>
+                            <th class="min-user">接单人</th>
+                            <th class="min-payed_at">付款时间</th>
                             <th class="none">企业地址</th>
                             <th class="none">企业描述</th>
-                            <th class="actions">操作</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -45,8 +46,8 @@
 
 @section('script')
     <script>
-        initCompanies({{ $user_id }});
-        function initCompanies(user_id) {
+        initCompanies();
+        function initCompanies() {
             $('#companies').DataTable({
                 "ordering":  false,
                 "processing": false,
@@ -67,25 +68,26 @@
                 }],
                 "info": false ,
                 "ajax": {
-                    "url": "{{ url('/ajax/companies_success_handle') }}" + '?user_id=' + user_id,
-                    "type": "post",
+                    "url": "{{ url('/ajax/companies_all_payed_handle') }}",
+                    "type": "get",
                 },
                 "columns": [
                     {data: 'id'},
                     {data: 'name'},
                     {data: 'contact'},
+                    {data: 'user'},
+                    {data: 'payed_at'},
                     {data: 'address'},
                     {data: 'description'},
-                    {
-                        "data":"",
-                        "className":"text-center",
-                        "render": function ( data, type, row ) {
-                            var msg = '';
-                            msg += '<a href="{{ url('/users/set_fail') }}?id='+row.id+'" class="btn btn-xs red"  data-method="POST" data-confirm="确认标记为交易失败, 标记后后无法撤销!" > <i class="fa fa-flag"></i> 标记失败</a>';
-                            msg += '<a href="{{ url('/users/set_payed') }}?id='+row.id+'" class="btn btn-xs blue"  data-method="POST" data-confirm="确认标记为已付款, 标记后后无法撤销!" > <i class="fa fa-flag"></i> 标记已付款</a>';
-                            return msg;
-                        }
-                    }
+                    {{--{--}}
+                    {{--"data":"",--}}
+                    {{--"className":"text-center",--}}
+                    {{--"render": function ( data, type, row ) {--}}
+                    {{--var msg = '';--}}
+                    {{--msg += '<a href="{{ url('/users/set_complete') }}?id='+row.id+'" class="btn btn-xs blue"  data-method="POST" data-confirm="确认标记为失败, 标记后后无法撤销!" > <i class="fa fa-flag"></i> 标记完成</a>';--}}
+                    {{--return msg;--}}
+                    {{--}--}}
+                    {{--}--}}
                 ],
                 buttons: [
 //                    { extend: 'print', className: 'btn dark btn-outline' },

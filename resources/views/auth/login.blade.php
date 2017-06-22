@@ -37,8 +37,8 @@
 <body class=" login">
 <!-- BEGIN LOGO -->
 <div class="logo">
-    <a href="index.html">
-        <img src="{{ asset('images/logo.png') }}" width="175" height="50" alt="" /> </a>
+    {{--<a href="index.html">--}}
+        {{--<img src="{{ asset('images/logo.png') }}" width="175" height="50" alt="" /> </a>--}}
 </div>
 <!-- END LOGO -->
 <!-- BEGIN LOGIN -->

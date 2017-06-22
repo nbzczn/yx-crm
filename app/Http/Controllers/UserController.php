@@ -11,6 +11,7 @@ class UserController extends Controller
 {
     // 管理员id
     protected $sysadmin = 1;
+    protected $clerk = 2;
 
     public function __construct()
     {
@@ -31,7 +32,7 @@ class UserController extends Controller
             $map[] = ['name','like', '%'.$name.'%'];
         }
 
-        $lists = User::where($map)->where('id','<>', $this->sysadmin)->paginate(15);
+        $lists = User::where($map)->where('id','<>', $this->sysadmin)->where('id','<>', $this->clerk)->paginate(15);
         return view('user.index', [
             'lists' => $lists,
             'name' => $name
